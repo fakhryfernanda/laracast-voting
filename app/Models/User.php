@@ -76,7 +76,7 @@ class User extends Authenticatable
             'jeffrey@laracasts.com',
             'andre_madarang@hotmail.com',
             'adrian@laracasts.com,',
-            'fakhryfernanda@gmail.com'
+            'mff023@gmail.com'
         ]);
     }
 }

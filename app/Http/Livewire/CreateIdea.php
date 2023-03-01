@@ -22,15 +22,21 @@ class CreateIdea extends Component
     public function createIdea()
     {
         if (auth()->check()) {
+            if (auth()->guest()) {
+                abort(Response::HTTP_FORBIDDEN);
+            }
+    
             $this->validate();
 
-            Idea::create([
+            $idea = Idea::create([
                 'user_id' => auth()->id(),
                 'category_id' => $this->category,
                 'status_id' => 1,
                 'title' => $this->title,
                 'description' => $this->description,
             ]);
+
+            $idea->vote(auth()->user()); // only logged in user able to vote
 
             session()->flash('success_message', 'Idea was added successfully.');
 

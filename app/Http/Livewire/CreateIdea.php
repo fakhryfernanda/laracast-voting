@@ -38,7 +38,7 @@ class CreateIdea extends Component
 
             $idea->vote(auth()->user()); // only logged in user able to vote
 
-            session()->flash('success_message', 'Idea was added successfully.');
+            session()->flash('success_message', 'Idea was added successfully!');
 
             $this->reset();
 

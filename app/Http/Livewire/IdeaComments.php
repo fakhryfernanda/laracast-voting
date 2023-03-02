@@ -2,11 +2,19 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Idea;
 use Livewire\Component;
 
 class IdeaComments extends Component
 {
     public $idea;
+
+    protected $listeners = ['commentWasAdded'];
+
+    public function commentWasAdded()
+    {
+        $this->idea->refresh();
+    }
 
     public function mount(Idea $idea)
     {

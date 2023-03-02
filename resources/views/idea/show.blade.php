@@ -13,9 +13,10 @@
         :votesCount="$votesCount"
     />
 
+    <livewire:idea-comments :idea="$idea" />
+
     <x-notification-success />
 
     <x-modals-container :idea="$idea" />
 
-    <livewire:idea-comments :idea="$idea" />
 </x-app-layout>

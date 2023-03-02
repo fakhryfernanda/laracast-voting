@@ -6,9 +6,12 @@ use App\Models\Idea;
 use Livewire\Component;
 use App\Exceptions\VoteNotFoundException;
 use App\Exceptions\DuplicateVoteException;
+use App\Http\Livewire\Traits\WithAuthRedirects;
 
 class IdeaShow extends Component
 {
+    use WithAuthRedirects;
+    
     public $idea;
     public $votesCount;
     public $hasVoted;
@@ -61,8 +64,8 @@ class IdeaShow extends Component
     
     public function vote()
     {
-        if (! auth()->check()) {
-            return redirect(route('login'));
+        if (auth()->guest()) {
+            return $this->redirectToLogin();
         }
 
         if ($this->hasVoted) {

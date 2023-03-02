@@ -21,9 +21,9 @@
             <a href="/">
                 <img src="{{ asset('img/logo.svg') }}" alt="">
             </a>
-            <div class="flex items-center mt-2 md:mt-0">
+            <div class="mt-2 md:mt-0">
                 @if (Route::has('login'))
-                    <div class="p-6 text-right">
+                    <div class="flex items-center space-x-4 p-6 text-right">
                         @auth
                             <div class="flex items-center space-x-4">
                                 <form method="POST" action="{{ route('logout') }}">
@@ -47,9 +47,16 @@
                         @endauth
                     </div>
                 @endif
-                <a href="">
-                    <img src="https://gravatar.com/avatar?d=mp" alt="avatar" class="w-10 h-10 rounded-full">
-                </a>
+                @auth
+                    {{-- <a href="#">
+                        <img src="https://gravatar.com/avatar?d=mp" alt="avatar" class="w-10 h-10 rounded-full">
+                    </a> --}}
+                    <div>
+                        <a href="#">
+                            <img src="{{ auth()->user()->getAvatar() }}" alt="avatar" class="w-10 h-10 rounded-full">
+                        </a>
+                    </div>
+                @endauth
             </div>
         </header>
 
